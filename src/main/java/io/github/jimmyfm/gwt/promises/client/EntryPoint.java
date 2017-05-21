@@ -1,39 +1,23 @@
 package io.github.jimmyfm.gwt.promises.client;
 
-import io.github.jimmyfm.gwt.promises.client.Promise.ConstructorParam;
-import io.github.jimmyfm.gwt.promises.client.Promise.FunctionParam;
-
 public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
 
-		ConstructorParam parameters = new ConstructorParam() {
-
-			@Override
-			public void exec(FunctionParam resolve, FunctionParam reject) {
-				if (Math.round(Math.random()) == 0)
-					resolve.exec("culo");
-				else
-					reject.exec("culo2");
-			}
-		};
-		Promise p = new Promise(parameters);
-		p.then(new FunctionParam() {
-
-			@Override
-			public void exec(Object o) {
-				log("Then", o);
-			}
+		Promise p1 = new Promise((res, rej) -> {
+			res.accept("p1");
 		});
-		p.error(new FunctionParam() {
 
-			@Override
-			public void exec(Object o) {
-				log("Error", o);
-			}
+		Promise p2 = new Promise((res, rej) -> {
+			res.accept("p2");
 		});
-		log(p);
+
+		Promise p3 = new Promise((res, rej) -> {
+			res.accept("p3");
+		});
+
+		Promise.all(new Promise[] { p1, p2, p3 }).then((t) -> log("Then", t)).error((t) -> log("Error", t));
 	}
 
 	public final static native void log(Object... o) /*-{

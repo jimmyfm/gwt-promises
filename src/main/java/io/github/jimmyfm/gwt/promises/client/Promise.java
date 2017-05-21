@@ -11,21 +11,23 @@ public class Promise {
 
 	@JsFunction
 	public interface FunctionParam {
-		void exec(Object o);
+		void accept(final Object o);
 	}
 
 	@JsFunction
 	public interface ConstructorParam {
-		void exec(FunctionParam resolve, FunctionParam reject);
+		void exec(final FunctionParam resolve, final FunctionParam reject);
 	}
 
 	@JsConstructor
-	public Promise(ConstructorParam parameters) {
+	public Promise(final ConstructorParam parameters) {
 	}
 
-	public native Promise then(FunctionParam f);
+	public native final Promise then(final FunctionParam f);
 
 	@JsMethod(name = "catch")
-	public native Promise error(FunctionParam f);
+	public native final Promise error(final FunctionParam f);
 
+	@JsMethod
+	public native final static Promise all(final Promise[] promises);
 }
