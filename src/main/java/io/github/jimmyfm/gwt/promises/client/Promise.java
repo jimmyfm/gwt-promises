@@ -22,16 +22,19 @@ import jsinterop.annotations.JsType;
  * <p>
  * Once a promise is fulfilled or rejected, it is immutable (i.e. it can never change again).
  * </p>
- * 
+ *
  * @see <a href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">
  *      https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise</a>
  * @author jimmyfm
  */
+
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
-public class Promise {
+public class Promise
+{
 
 	@JsFunction
-	public interface FunctionParam {
+	public interface FunctionParam
+	{
 		void accept(final Object o);
 	}
 
@@ -44,12 +47,14 @@ public class Promise {
 	 * thrown in the executor function, the promise is rejected. The return value of the executor is ignored.
 	 */
 	@JsFunction
-	public interface ExecutorFunction {
+	public interface ExecutorFunction
+	{
 		void exec(final FunctionParam resolve, final FunctionParam reject);
 	}
 
 	@JsConstructor
-	public Promise(final ExecutorFunction executor) {
+	public Promise(final ExecutorFunction executor)
+	{
 	}
 
 	/**
@@ -61,7 +66,7 @@ public class Promise {
 	 * that then is called on (if it becomes fulfilled). If the second argument is omitted or provided a non-function,
 	 * the new Promise that is created simply adopts the rejection state of the Promise that then is called on (if it
 	 * becomes rejected).
-	 * 
+	 *
 	 * @param onFulfilled
 	 *            A Function called when the Promise is fulfilled. This function has one argument, the fulfillment
 	 *            value.
@@ -71,7 +76,7 @@ public class Promise {
 	 *         rejected Promise. <br />
 	 *         A resolved Promise is returned if the input function returns a value, or the input function returns a
 	 *         resolved Promise.
-	 * 
+	 *
 	 */
 	public native final Promise then(final FunctionParam onFulfilled);
 
@@ -84,7 +89,7 @@ public class Promise {
 	 * that then is called on (if it becomes fulfilled). If the second argument is omitted or provided a non-function,
 	 * the new Promise that is created simply adopts the rejection state of the Promise that then is called on (if it
 	 * becomes rejected).
-	 * 
+	 *
 	 * @param onFulfilled
 	 *            A Function called when the Promise is fulfilled. This function has one argument, the fulfillment
 	 *            value.
@@ -104,7 +109,7 @@ public class Promise {
 	 * Promise.prototype.then(undefined, onRejected). <br />
 	 * The Promise returned by catch() is rejected if onRejected throws an error or returns a Promise which is itself
 	 * rejected; otherwise, it is resolved.
-	 * 
+	 *
 	 * @param onRejected
 	 *            A Function called when the Promise is rejected. This function has one argument: reason, The rejection
 	 *            reason.
@@ -119,7 +124,7 @@ public class Promise {
 	 * fulfilled with an array of the values from the fulfilled promises in the same order as defined in the iterable.
 	 * If the returned promise rejects, it is rejected with the reason from the first promise in the iterable that
 	 * rejected. This method can be useful for aggregating results of multiple promises.
-	 * 
+	 *
 	 * @param promises
 	 *            An iterable object (such as an Array) of promises.
 	 * @return A Promise that resolves when all of the promises in the given iterable have resolved, or rejects if any
@@ -131,7 +136,7 @@ public class Promise {
 	/**
 	 * Returns a promise that fulfills or rejects as soon as one of the promises in the iterable fulfills or rejects,
 	 * with the value or reason from that promise.
-	 * 
+	 *
 	 * @param promises
 	 *            An iterable object, such as an Array. See iterable.
 	 * @return A Promise that resolves or rejects as soon as one of the promises in the given iterable resolves or
@@ -150,7 +155,7 @@ public class Promise {
 	 * The Promise.resolve(value) method returns a Promise object that is resolved with the given value. If the value is
 	 * a thenable (i.e. has a "then" method), the returned promise will "follow" that thenable, adopting its eventual
 	 * state; otherwise the returned promise will be fulfilled with the value.
-	 * 
+	 *
 	 * @param value
 	 *            Argument to be resolved by this Promise. Can also be a Promise or a thenable to resolve.
 	 * @return A Promise that is resolved with the given value.
