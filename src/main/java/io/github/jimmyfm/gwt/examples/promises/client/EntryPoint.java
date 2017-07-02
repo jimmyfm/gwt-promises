@@ -1,70 +1,51 @@
 package io.github.jimmyfm.gwt.examples.promises.client;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import io.github.jimmyfm.gwt.promises.client.Promise;
+import io.github.jimmyfm.gwt.promises.client.Console;
+import io.github.jimmyfm.gwt.promises.client.ws.EventListener;
+import io.github.jimmyfm.gwt.promises.client.ws.WebSocket;
 
 public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
 
-		Promise p1 = new Promise((res, rej) -> {
-			res.accept("p1");
+		// Console.log(23, "23,", this);
+		// Console.warn(23, "23,", this);
+		// Console.trace(23, "23,", this);
+
+		// Notification.requestPermission();
+		// NotificationOptions opt = new NotificationOptions();
+		// opt.setBody("asdasda");
+		// Console.log(opt);
+		// Notification n = new Notification("asd", opt);
+		// Console.log(n);
+
+		final WebSocket socket = new WebSocket("ws://echo.websocket.org");
+
+		socket.onmessage = Console::log;
+		socket.onclose = Console::log;
+		socket.onerror = () -> GWT.log("socket error");
+		socket.onopen = () -> {
+			GWT.log("socket open");
+			socket.send("asd");
+		};
+
+		socket.addEventListener("message", new EventListener() {
+
+			@Override
+			public JavaScriptObject call(JavaScriptObject event) {
+				Console.log("attached", event);
+				return null;
+			}
 		});
 
-		Promise p2 = new Promise((res, rej) -> {
-			res.accept("p2");
-		});
-
-		Promise p3 = new Promise((res, rej) -> {
-			res.accept("p3");
-		});
-
-		Promise.all(new Promise[] { p1, p2, p3 }).then((t) -> log("Then", t)).error((t) -> log("Error", t));
-
-		Button catch1 = new Button("catch1");
-		catch1.addClickHandler(e -> catch1());
-		RootPanel.get().add(catch1);
+		Button btn = new Button("Close", (ClickHandler) (e) -> socket.close());
+		RootPanel.get().add(btn);
 	}
-
-	/**
-	 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch
-	 * 
-	 * XXX We need to manage better exceptions thrown inside promises and the possibility to return values or promises,
-	 * this example shows clearly what we are lacking
-	 */
-	private void catch1() {
-		Promise p1 = new Promise((resolve, reject) -> {
-			resolve.accept("Success");
-		});
-
-		p1.then((value) -> {
-			log(value); // "Success!"
-			throw new RuntimeException("oh, no!");
-		}).error((e) -> {
-			log(e); // "oh, no!"
-		}).then((v) -> {
-			log("after a catch the chain is restored");
-		}, (v) -> {
-			log("Not fired due to the catch");
-		});
-
-		// The following behaves the same as above
-		// p1.then((value) -> {
-		// log(value); // "Success!"
-		// // XXX return Promise.reject("oh, no!");
-		// }).error((e) -> {
-		// log(e); // "oh, no!"
-		// }).then((v) -> {
-		// log("after a catch the chain is restored");
-		// }, (v) -> {
-		// log("Not fired due to the catch");
-		// });
-	}
-
-	public final static native void log(Object... o) /*-{
-		console.log(o);
-	}-*/;
 }

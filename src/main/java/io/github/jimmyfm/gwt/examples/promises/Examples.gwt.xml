@@ -13,6 +13,7 @@
 
 	<!-- Other module inherits -->
 	<inherits name="io.github.jimmyfm.gwt.promises.Promises" />
+	<inherits name="elemental.Elemental" />
 
 	<!-- Specify the app entry point class. -->
 	<entry-point class="io.github.jimmyfm.gwt.examples.promises.client.EntryPoint" />
