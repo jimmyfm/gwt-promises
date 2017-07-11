@@ -1,4 +1,4 @@
-package io.github.jimmyfm.gwt.examples.promises.client;
+package examples.promises.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -6,9 +6,9 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import io.github.jimmyfm.gwt.promises.client.Console;
-import io.github.jimmyfm.gwt.promises.client.ws.EventListener;
-import io.github.jimmyfm.gwt.promises.client.ws.WebSocket;
+import io.github.jimmyfm.gwt.webapi.client.Console;
+import io.github.jimmyfm.gwt.webapi.client.websocket.EventListener;
+import io.github.jimmyfm.gwt.webapi.client.websocket.WebSocket;
 
 public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 

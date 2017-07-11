@@ -1,4 +1,4 @@
-package io.github.jimmyfm.gwt.promises.client.ws;
+package io.github.jimmyfm.gwt.webapi.client.websocket;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

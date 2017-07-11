@@ -1,5 +1,6 @@
-package io.github.jimmyfm.gwt.promises.client;
+package io.github.jimmyfm.gwt.webapi.client.notification;
 
+import io.github.jimmyfm.gwt.javascript.promises.client.Promise;
 import jsinterop.annotations.JsConstructor;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsPackage;

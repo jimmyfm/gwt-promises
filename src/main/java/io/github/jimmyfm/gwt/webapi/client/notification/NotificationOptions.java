@@ -1,4 +1,4 @@
-package io.github.jimmyfm.gwt.promises.client;
+package io.github.jimmyfm.gwt.webapi.client.notification;
 
 import com.google.gwt.json.client.JSONObject;
 

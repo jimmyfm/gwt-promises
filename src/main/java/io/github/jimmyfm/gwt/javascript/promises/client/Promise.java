@@ -1,4 +1,4 @@
-package io.github.jimmyfm.gwt.promises.client;
+package io.github.jimmyfm.gwt.javascript.promises.client;
 
 import jsinterop.annotations.JsConstructor;
 import jsinterop.annotations.JsFunction;

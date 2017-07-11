@@ -1,4 +1,4 @@
-package io.github.jimmyfm.gwt.promises.client.ws;
+package io.github.jimmyfm.gwt.webapi.client.websocket;
 
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;

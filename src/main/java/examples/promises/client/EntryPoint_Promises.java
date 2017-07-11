@@ -1,10 +1,10 @@
-package io.github.jimmyfm.gwt.examples.promises.client;
+package examples.promises.client;
 
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import io.github.jimmyfm.gwt.promises.client.Console;
-import io.github.jimmyfm.gwt.promises.client.Promise;
+import io.github.jimmyfm.gwt.javascript.promises.client.Promise;
+import io.github.jimmyfm.gwt.webapi.client.Console;
 
 public class EntryPoint_Promises implements com.google.gwt.core.client.EntryPoint {
 
